@@ -14,9 +14,4 @@ public class AppController {
 		return "index";
 	}
 
-	@RequestMapping("/partials/{page}")
-	String partialHandler(@PathVariable("page") final String page) {
-		return page;
-	}
-
 }
