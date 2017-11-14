@@ -61,7 +61,7 @@
 <#--<script-->
 <#--src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
 <script type="text/javascript" src="js/app/app.js"></script>
-<script type="text/javascript" src="js/app/UserService.js"></script>
-<script type="text/javascript" src="js/app/UserController.js"></script>
+<script type="text/javascript" src="js/app/TaskService.js"></script>
+<script type="text/javascript" src="js/app/TaskController.js"></script>
 </body>
 </html>
