@@ -48,11 +48,7 @@
                 <a href="#" class="btn btn-default margin-top-5"
                    ng-click="logout()"> Logout </a>
                 <a href="#" class="btn btn-default margin-top-5"
-                   ng-click="getAdminResouce()">Admin Resource</a>
-                <a href="#" class="btn btn-default margin-top-5"
-                   ng-click="getUserResouce()">User Resource</a>
-                <div class="alert alert-info margin-top-5" ng-show="message">{{message}}</div>
-                <pre ng-show="resource" class="  margin-top-5">{{resource|json}}</pre>
+                   ng-click="addTask()">Test!</a>
             </div>
         </div>
     </div>

@@ -25,6 +25,15 @@ app.controller('AppCtrl', function($http, $scope) {
         });
     };
 
+    $scope.addTask = function () {
+        console.log('tasks');
+      $http.get('api/tasks').success(function (res) {
+          console.log('tasks : ' + res);
+      }).error(function (error) {
+          console.log('errors');
+      })
+    };
+
     $scope.logout = function () {
         $http.defaults.headers.common['Authorization'] = null;
         $scope.user = null;

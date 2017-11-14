@@ -1,7 +1,7 @@
 package boot.angular.controller;
 
-import boot.angular.model.User;
-import boot.angular.service.UserService;
+import boot.angular.model.Task;
+import boot.angular.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,29 @@ import java.util.List;
 @RequestMapping("/api")
 public class RestApiController {
 
-	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
+    public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    TaskService taskService;
 
-	@RequestMapping(value = "/user/", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> listAllUsers() {
-		List<User> users = userService.findAllUsers();
-		if (users.isEmpty()) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(users, HttpStatus.OK);
-	}
+    @RequestMapping("tasks")
+    public ResponseEntity<List<Task>> getAllTasks() {
+        List<Task> tasks = taskService.findAllTasks();
+        if (tasks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+//
+//	@RequestMapping(value = "/tasks/", method = RequestMethod.GET)
+//	public ResponseEntity<List<Task>>listAllUsers() {
+//		List<Task> tasks = taskService.findAllTasks();
+//		if (tasks.isEmpty()) {
+//			return new ResponseEntity(HttpStatus.NO_CONTENT);
+//		}
+//		return new ResponseEntity<>(tasks, HttpStatus.OK);
+//	}
 
 
 }
