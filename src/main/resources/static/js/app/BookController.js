@@ -17,6 +17,7 @@ app.controller('AppCtrl', function($http, $scope) {
                 // setting the same header value for all request calling from this app
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + base64Credential;
                 $scope.user = res;
+                $scope.showUpdateBookDialog = false;
             } else {
                 $scope.message = 'Authentication Failed !';
             }
@@ -25,13 +26,28 @@ app.controller('AppCtrl', function($http, $scope) {
         });
     };
 
-    $scope.addTask = function () {
-        console.log('tasks');
-      $http.get('api/tasks').success(function (res) {
-          console.log('tasks : ' + res);
+    $scope.getBooks = function () {
+      $http.get('api/books').success(function (res) {
+          $scope.books = res;
       }).error(function (error) {
-          console.log('errors');
+          $scope.message = error;
       })
+    };
+
+    $scope.update = function (id) {
+        console.log('update : ' + id);
+    };
+
+    $scope.delete = function (id) {
+        console.log('delete : ' + id);
+    };
+
+    $scope.createBook = function () {
+
+    };
+
+    $scope.openCreateDialog = function () {
+        $scope.showUpdateTaskDialog = true;
     };
 
     $scope.logout = function () {

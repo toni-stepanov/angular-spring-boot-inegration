@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-public class Task implements Serializable{
+public class Book implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class Task implements Serializable{
 	@Column(name="TITLE", nullable=false)
 	private String title;
 
-	@Column(name="DESCRIPTION", nullable=false)
-	private String description;
+	@Column(name="AUTHOR", nullable=false)
+	private String author;
 
 }
