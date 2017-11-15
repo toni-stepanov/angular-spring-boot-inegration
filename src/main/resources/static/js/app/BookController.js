@@ -17,7 +17,8 @@ app.controller('AppCtrl', function($http, $scope) {
                 // setting the same header value for all request calling from this app
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + base64Credential;
                 $scope.user = res;
-                $scope.showUpdateBookDialog = false;
+                $scope.updateTaskDialogStatus = null;
+                $scope.createForm = {};
             } else {
                 $scope.message = 'Authentication Failed !';
             }
@@ -34,20 +35,46 @@ app.controller('AppCtrl', function($http, $scope) {
       })
     };
 
-    $scope.update = function (id) {
+    $scope.openUpdateDialog = function (id) {
+        $scope.updateTaskDialogStatus = 'update';
+        $scope.createForm.id = id;
+        $http.get('api/books/' + id).success(function (res) {
+            $scope.createForm.title = res.title;
+            $scope.createForm.author = res.author;
+        }).error(function (error) {
+            $scope.message = error;
+        });
         console.log('update : ' + id);
     };
 
     $scope.delete = function (id) {
         console.log('delete : ' + id);
+        $http.delete('api/book/delete/' + id).success(function (res) {
+            $scope.getBooks();
+        }).error(function (error) {
+            $scope.formMessage = error;
+        });
     };
 
     $scope.createBook = function () {
+        $scope.createForm.id = null;
+        $http.post('api/book/create/', $scope.createForm).success(function (res) {
+            $scope.getBooks();
+        }).error(function (error) {
+            $scope.formMessage = error;
+        });
+    };
 
+    $scope.updateBook = function () {
+        $http.put('api/book/update/' + $scope.createForm.id, $scope.createForm).success(function (res) {
+            $scope.getBooks();
+        }).error(function (error) {
+            $scope.formMessage = error;
+        });
     };
 
     $scope.openCreateDialog = function () {
-        $scope.showUpdateTaskDialog = true;
+        $scope.updateTaskDialogStatus = 'create';
     };
 
     $scope.logout = function () {
@@ -55,6 +82,5 @@ app.controller('AppCtrl', function($http, $scope) {
         $scope.user = null;
         $scope.message = 'Successfully logged out';
     }
-
 
 });

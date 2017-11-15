@@ -18,7 +18,7 @@
 
 <div ng-app="SecurityTestApp" ng-controller="AppCtrl">
     <div class=" col-md-4 col-md-offset-4" ng-show="!user">
-        <div class="panel panel-default" ng-show="!user">
+        <div class="panel panel-default">
             <div class="panel-heading">Login</div>
             <div class="panel-body">
                 <div class="col-md-12">
@@ -49,6 +49,8 @@
                        ng-click="logout()"> Logout </a>
                     <a href="#" class="btn btn-default margin-top-5"
                        ng-click="getBooks()">Get all books</a>
+                    <a href="#" class="btn btn-default margin-top-5"
+                       ng-click="openCreateDialog()">Create new book</a>
                 </div>
             </div>
         </div>
@@ -63,21 +65,48 @@
                             <td ng-if="$even">{{ book.title }}</td>
                             <td ng-if="$odd" style="background-color:#f1f1f1">{{ book.author }}</td>
                             <td ng-if="$even">{{ book.author }}</td>
-                            <td><p data-placement="top" data-toggle="tooltip" title="Edit">
-                                <button class="btn btn-primary btn-xs" ng-click="update(book.id)">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button></p>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                    <button class="btn btn-primary btn-xs" ng-click="openUpdateDialog(book.id)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </p>
                             </td>
-                            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button
-                                    class="btn btn-danger btn-xs" data-title="Delete" ng-click="delete(book.id)">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button></p></td>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                    <button
+                                            class="btn btn-danger btn-xs" data-title="Delete"
+                                            ng-click="delete(book.id)">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </p>
+                            </td>
                         </tr>
                         </tr>
                     </table>
                 </div>
-                <div class="col-md-6 col-md-offset-1" ng-show="showUpdateTaskDialog">Create/update book
-
+                <div class="col-md-6 col-md-offset-1" ng-show="updateTaskDialogStatus">
+                    <p ng-show="updateTaskDialogStatus === 'create'">Create book</p>
+                    <p ng-show="updateTaskDialogStatus === 'update'">Update book</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="txt" class="form-control" id="title" ng-model="createForm.title">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author:</label>
+                            <input type="txt" class="form-control" id="author" ng-model="createForm.author">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-show="updateTaskDialogStatus == 'create'"
+                                ng-click="createBook()">Submit
+                        </button>
+                        <button type="submit" class="btn btn-default" ng-show="updateTaskDialogStatus == 'update'"
+                                ng-click="updateBook()">Submit
+                        </button>
+                        <div class="alert alert-info margin-top-5" ng-show="formMessage">Error happened:
+                            {{formMessage.errorMessage}}
+                        </div>
+                    </form>
                 </div>
 
             </div>

@@ -29,4 +29,24 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public void deleteBookById(Integer id) {
+        bookRepository.delete(id);
+    }
+
+    @Override
+    public boolean isBookExist(Book book) {
+        return findByTitle(book.getTitle()) != null;
+    }
+
+    @Override
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
+
+    @Override
+    public void updateBook(Book book) {
+        save(book);
+    }
 }
