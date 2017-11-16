@@ -23,7 +23,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/index.html", "/js/app/**", "/bower_components/**", "/css/**").permitAll()
+                .antMatchers("/", "/index.html", "/js/**", "/bower_components/**", "/css/**").permitAll()
                 .antMatchers("/api/admin/*").hasAuthority("ADMIN")
                 .antMatchers("/api/user/**").hasAnyAuthority("USER", "ADMIN")
                 .anyRequest().fullyAuthenticated()

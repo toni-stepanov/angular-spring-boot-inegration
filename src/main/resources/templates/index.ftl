@@ -16,7 +16,7 @@
 </style>
 <body>
 
-<div ng-app="SecurityTestApp" ng-controller="AppCtrl">
+<div ng-app="SecurityTestApp" ng-controller="LoginController">
     <div class=" col-md-4 col-md-offset-4" ng-show="!user">
         <div class="panel panel-default">
             <div class="panel-heading">Login</div>
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div ng-show="user">
+    <div ng-show="user" ng-controller="AppCtrl">
 
         <div class="panel panel-default">
             <div class="panel-heading">Welcome {{user.name}}</div>
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h3>List of books</h3>
+                    <h3 ng-show="books">List of books</h3>
                     <table class="table">
                         <tr ng-repeat="book in books">
                             <td ng-if="$odd" style="background-color:#f1f1f1">{{ book.title }}</td>
@@ -104,7 +104,7 @@
                                 ng-click="updateBook()">Submit
                         </button>
                         <div class="alert alert-info margin-top-5" ng-show="formMessage">Error happened:
-                            {{formMessage.errorMessage}}
+                            {{formMessage}}
                         </div>
                     </form>
                 </div>
@@ -118,8 +118,12 @@
 
 <!-- Including Scripts -->
 <script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/localforage.min.js"></script>
+<script src="bower_components/ngStorage.min.js"></script>
 <script type="text/javascript" src="js/app/app.js"></script>
-<script type="text/javascript" src="js/app/BookService.js"></script>
-<script type="text/javascript" src="js/app/BookController.js"></script>
+<script type="text/javascript" src="js/app/book/BookService.js"></script>
+<script type="text/javascript" src="js/app//user/UserService.js"></script>
+<script type="text/javascript" src="js/app/user/LoginController.js"></script>
+<script type="text/javascript" src="js/app/book/BookController.js"></script>
 </body>
 </html>
