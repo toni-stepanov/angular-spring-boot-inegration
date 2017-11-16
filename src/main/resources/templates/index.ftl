@@ -118,8 +118,7 @@
 
 <!-- Including Scripts -->
 <script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/localforage.min.js"></script>
-<script src="bower_components/ngStorage.min.js"></script>
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
 <script type="text/javascript" src="js/app/app.js"></script>
 <script type="text/javascript" src="js/app/book/BookService.js"></script>
 <script type="text/javascript" src="js/app//user/UserService.js"></script>

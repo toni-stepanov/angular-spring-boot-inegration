@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('BookService', ['$http', '$localStorage', '$q', function ($http, $localStorage, $q) {
+app.factory('BookService', ['$http', '$q', function ($http, $q) {
 
 
     var factory = {
